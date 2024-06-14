@@ -26,6 +26,9 @@ class Disque
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\ManyToOne(inversedBy: 'disques')]
+    private ?Artiste $artiste = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Disque
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getArtiste(): ?Artiste
+    {
+        return $this->artiste;
+    }
+
+    public function setArtiste(?Artiste $artiste): static
+    {
+        $this->artiste = $artiste;
 
         return $this;
     }
