@@ -20,6 +20,9 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $alt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'images')]
+    private ?Disque $disque = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Image
     public function setAlt(string $alt): static
     {
         $this->alt = $alt;
+
+        return $this;
+    }
+
+    public function getDisque(): ?Disque
+    {
+        return $this->disque;
+    }
+
+    public function setDisque(?Disque $disque): static
+    {
+        $this->disque = $disque;
 
         return $this;
     }
