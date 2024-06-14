@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
+use App\Repository\ArtisteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UsersRepository::class)]
-class Users
+#[ORM\Entity(repositoryClass: ArtisteRepository::class)]
+class Artiste
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,21 +14,21 @@ class Users
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $nom = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNom(): ?string
     {
-        return $this->name;
+        return $this->nom;
     }
 
-    public function setName(string $name): static
+    public function setNom(string $nom): static
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
