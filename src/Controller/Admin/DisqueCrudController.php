@@ -12,8 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use App\Entity\Produit;
-
-
+use Doctrine\ORM\Mapping\Entity;
 
 class DisqueCrudController extends AbstractCrudController
 {
@@ -30,6 +29,7 @@ class DisqueCrudController extends AbstractCrudController
             TextField::new('subtitle'),
             TextareaField::new('description'),
             NumberField::new('price'),
+
     
     
             AssociationField::new('artiste'),
@@ -37,7 +37,7 @@ class DisqueCrudController extends AbstractCrudController
             //     ->setBasePath('images/')
             //     ->setUploadDir('public/images/imgDisc')
             //     ->setRequired($pageName !== Crud::PAGE_EDIT)
-            //     ->setFormTypeOptions($pageName !== Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
+            //     ->setFormTypeOptions($pageName !== Crud::PAGE_EDIT ? ['allow_delete' => false] : [])
         ];
     }
 }
