@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Disque;
 use App\Entity\Artiste;
+use App\Entity\Genre;
 use App\Entity\TopSong;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,5 +52,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Artiste','fas fa-palette',Artiste::class);
         yield MenuItem::linkToCrud('Disque', 'fas fa-compact-disc', Disque::class);
         yield MenuItem::linkToCrud('Top 5','fas fa-music', TopSong::class);
+        yield MenuItem::linkToCrud('Genre','fas fa-icons', Genre::class);
     }
 }

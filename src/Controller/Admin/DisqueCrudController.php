@@ -39,7 +39,7 @@ class DisqueCrudController extends AbstractCrudController
     
     
             AssociationField::new('artiste'),
-
+            AssociationField::new('genre'),
         ];
     }
 }

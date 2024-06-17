@@ -41,9 +41,16 @@ class Disque
     #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'genre')]
     private Collection $genres;
 
+    /**
+     * @var Collection<int, Genre>
+     */
+    #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'disques')]
+    private Collection $genre;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
+        $this->genre = new ArrayCollection();
     }
 
 
@@ -132,16 +139,15 @@ class Disque
     /**
      * @return Collection<int, Genre>
      */
-    public function getGenres(): Collection
+    public function getGenre(): Collection
     {
-        return $this->genres;
+        return $this->genre;
     }
 
     public function addGenre(Genre $genre): static
     {
-        if (!$this->genres->contains($genre)) {
-            $this->genres->add($genre);
-            $genre->addGenre($this);
+        if (!$this->genre->contains($genre)) {
+            $this->genre->add($genre);
         }
 
         return $this;
@@ -149,9 +155,7 @@ class Disque
 
     public function removeGenre(Genre $genre): static
     {
-        if ($this->genres->removeElement($genre)) {
-            $genre->removeGenre($this);
-        }
+        $this->genre->removeElement($genre);
 
         return $this;
     }

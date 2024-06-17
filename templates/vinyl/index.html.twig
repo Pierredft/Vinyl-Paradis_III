@@ -4,8 +4,6 @@
 
 {% block body %}
     {% for disque in disques %}
-
-
             <div class="posCard">
             <div class="card mb-3 filter" style="max-width: 80%;">
                 <div class="row g-0">
@@ -17,6 +15,9 @@
                             <h2 class="card-title text-center">{{disque.artiste.nom}}</h2>
                             <h3 class="text-center">{{disque.title}}</h3>
                             <h4 class="card-title text-center">{{disque.subtitle}}</h4>
+                            {% for genre in disque.genre %}
+                                <h5 class="card-title text-center">{{genre.nom}}</h5> 
+                            {% endfor %}
                             <p class="card-text text-center">{{disque.description}}</p>
                             <div class="prixPanier">
                                 <p class="mr5">Prix :</p>
