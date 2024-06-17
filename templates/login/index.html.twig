@@ -6,7 +6,7 @@
     <div class="posCard">
         <div class="cards">
             <div class="card-body">
-                <h2 class="card-title text-center">Se Connecter</h2>
+                <h2 class="card-title text-center text-white">Se Connecter</h2>
                 {% for message in app.flashes('success') %}
                 <div class="alert alert-success mt-4">
                     {{ message }}
@@ -19,11 +19,11 @@
                 {% endif %}
 
                 <form action="{{ path('app_login')}}" method="post">
-                    <label for="username" class="form-label">Email:</label>
+                    <label for="username" class="form-label text-white">Email:</label>
                     <input class="form-control" type="text" id="username" name="_username" value="{{ last_username}}">
-                    <label for="password" class="form-label">Mot de passe:</label>
+                    <label for="password" class="form-label text-white">Mot de passe:</label>
                     <input class="form-control" type="password" id="password" name="_password">
-                    <p class="text-center">Vous n'avez pas encore de compte ? <br><a href="{{path('app_register')}}" class="card-link">inscrivez-vous !</a></p>
+                    <p class="text-center text-white">Vous n'avez pas encore de compte ? <br><a href="{{path('app_register')}}" class="card-link">inscrivez-vous !</a></p>
                     <div class="posBtn">
                         <button type="submit" class="btn btn btn-success mt-3">Se connecter</button>
                     </div>

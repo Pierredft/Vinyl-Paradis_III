@@ -5,25 +5,25 @@
 {% block body %}
     {% for disque in disques %}
             <div class="posCard">
-            <div class="card mb-3 filter" style="max-width: 80%;">
+            <div class="blackScnd mb-3 filter" style="max-width: 80%;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img class="img-fluid p10" src="{{asset('/images/imgDisc/'~ disque.image)}}" alt="#">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title text-center">{{disque.artiste.nom}}</h2>
-                            <h3 class="text-center">{{disque.title}}</h3>
-                            <h4 class="card-title text-center">{{disque.subtitle}}</h4>
+                            <h2 class="card-title text-center text-white">{{disque.artiste.nom}}</h2>
+                            <h3 class="text-center text-white">{{disque.title}}</h3>
+                            <h4 class="card-title text-center text-white">{{disque.subtitle}}</h4>
                             {% for genre in disque.genre %}
-                                <h5 class="card-title text-center">{{genre.nom}}</h5> 
+                                <h5 class="card-title text-center text-white">{{genre.nom}}</h5> 
                             {% endfor %}
-                            <p class="card-text text-center">{{disque.description}}</p>
+                            <p class="card-text text-center text-white">{{disque.description}}</p>
                             <div class="prixPanier">
-                                <p class="mr5">Prix :</p>
-                                <p>{{ disque.price|number_format(2, '.', '') }}</p>
-                                <p class="mr20">€</p>
-                                <button class="shopBtn hidden"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #63E6BE;"></i></button>
+                                <p class="mr5 text-white">Prix :</p>
+                                <p class="text-white">{{ disque.price|number_format(2, '.', '') }}</p>
+                                <p class="mr20 text-white">€</p>
+                                <button class="shopBtn hidden text-white"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #D02A2A;"></i></button>
                             </div>
                         </div>
                     </div>

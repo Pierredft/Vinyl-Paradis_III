@@ -31,7 +31,8 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label'=>'Nom',
                 'label_attr'=>[
-                    'class'=>'form-label'
+                    'class'=>'form-label',
+                    'style'=>'color: white'
                 ],
                 'constraints'=>[
                     new Assert\Length(['min'=> 2,'max'=> 50])
@@ -46,7 +47,8 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label'=>'Prenom',
                 'label_attr'=>[
-                    'class'=>'form-label'
+                    'class'=>'form-label',
+                    'style'=>'color: white'
                 ],
                 'constraints'=>[
                     new Assert\Length(['min'=>2,'max'=> 50])
@@ -62,6 +64,7 @@ class RegistrationFormType extends AbstractType
                 'label'=>'Adresse e-mail',
                 'label_attr'=>[
                     'class'=>'form-label',
+                    'style'=>'color: white'
                 ],
                 'constraints'=>[
                     new Assert\NotBlank(),
@@ -72,6 +75,10 @@ class RegistrationFormType extends AbstractType
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label'=> 'Accepter les termes',
+                'label_attr'=>[
+                    'class'=>'form-label',
+                    'style'=>'color: white'
+                ],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Voulez-vous accepter les termes ?',
@@ -87,7 +94,8 @@ class RegistrationFormType extends AbstractType
                         ],
                         'label'=>'Mot de passe',
                         'label_attr'=>[
-                            'class'=> 'form-label'
+                            'class'=> 'form-label',
+                            'style'=>'color: white'
                         ],
                         'constraints'=>[
                             new Assert\NotBlank([
@@ -112,7 +120,8 @@ class RegistrationFormType extends AbstractType
                         ],
                         'label'=>"Confirmation de votre mot de passe",
                         'label_attr'=>[
-                            'class'=>'form-label'
+                            'class'=>'form-label',
+                            'style'=>'color: white'
                         ],
                         'constraints'=>[
                             new Assert\NotBlank([

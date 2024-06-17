@@ -4,7 +4,7 @@
 }
 
 .dropShadow{
-    filter: drop-shadow(0 0 0.25rem #F4F4AF);
+    filter: drop-shadow(0 0 0.25rem #D02A2A);
     border-radius: 20px;
 }
 
@@ -24,6 +24,6 @@
     margin-bottom: 10px;
     font-style: oblique;
     font-weight: bold;
-    color: #71EE88;
+    color: #D02A2A;
     font-size: 1.5em;
 }

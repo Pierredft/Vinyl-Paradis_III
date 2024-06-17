@@ -6,7 +6,7 @@
     <div class="posCard">
         <div class="cards">
             <div class="card-body">
-                <h1 class="card-title text-center">Inscription</h1>
+                <h1 class="card-title text-center text-white">Inscription</h1>
                 {{ form_errors(registrationForm) }}
                 {{ form_start(registrationForm) }}
                 <p class="card-text">{{ form_row(registrationForm.name) }}</p>
@@ -18,7 +18,7 @@
                     {{ form_label(registrationForm.agreeTerms) }}
                     {{ form_widget(registrationForm.agreeTerms) }}
                 </div>
-                <p class="text-center">Vous avez deja un compte ? <a href="{{path('app_login')}}" class="card-link">connecter vous !</a></p>
+                <p class="text-center text-white">Vous avez deja un compte ? <a href="{{path('app_login')}}" class="card-link">connecter vous !</a></p>
             </div>
             <div class="posBtn">
                 <button type="submit" class="btn btn btn-success">S'inscrire</button>
