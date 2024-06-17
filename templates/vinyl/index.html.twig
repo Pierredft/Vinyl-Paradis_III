@@ -23,7 +23,7 @@
                                 <p class="mr5 text-white">Prix :</p>
                                 <p class="text-white">{{ disque.price|number_format(2, '.', '') }}</p>
                                 <p class="mr20 text-white">€</p>
-                                <button class="shopBtn hidden text-white"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #D02A2A;"></i></button>
+                                <a href="{{path('add',{'id' : disque.id})}}"><button class="shopBtn hidden text-white"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #D02A2A;"></i></button></a>
                             </div>
                         </div>
                     </div>
