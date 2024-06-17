@@ -31,16 +31,9 @@ class Disque
     #[ORM\ManyToOne(inversedBy: 'disques')]
     private ?Artiste $artiste = null;
 
-    /**
-     * @var Collection<int, Image>
-     */
-    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'disque')]
-    private Collection $images;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
 
     public function __toString(): string
     {
@@ -112,32 +105,14 @@ class Disque
         return $this;
     }
 
-    /**
-     * @return Collection<int, Image>
-     */
-    public function getImages(): Collection
+    public function getImage(): ?string
     {
-        return $this->images;
+        return $this->image;
     }
 
-    public function addImage(Image $image): static
+    public function setImage(string $image): static
     {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->setDisque($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): static
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getDisque() === $this) {
-                $image->setDisque(null);
-            }
-        }
+        $this->image = $image;
 
         return $this;
     }
