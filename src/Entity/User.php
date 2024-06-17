@@ -27,14 +27,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    private ?string $plainPassword = 'password';
-    private ?string $newPassword = 'password';
+    private ?string $plainPassword;
+    private ?string $newPassword;
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = 'password';
+    private ?string $password;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $surname = null;
 
     public function getId(): ?int
     {
@@ -119,8 +125,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->plainPassword;
     }
 
-    public function setPlainPassword($plainPassword){
-        $this->plainPassword = $plainPassword;
+    public function setPlainPassword(? string $password){
+        $this->plainPassword = $password;
         return $this;
     }
 
@@ -131,5 +137,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): static
+    {
+        $this->surname = $surname;
+
+        return $this;
     }
 }

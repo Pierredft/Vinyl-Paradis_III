@@ -12,3 +12,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.posBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.labelStyle{
+    background-color: #F4F4AF;
+}

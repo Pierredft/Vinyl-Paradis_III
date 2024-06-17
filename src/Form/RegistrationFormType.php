@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -21,6 +22,34 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('name', TextType::class,[
+                'attr'=>[
+                    'class'=>'form-control',
+                    'minLength'=>2,
+                    'maxLength'=>50
+                ],
+                'label'=>'Nom',
+                'label_attr'=>[
+                    'class'=>'form-label'
+                ],
+                'constraints'=>[
+                    new Assert\Length(['min'=> 2,'max'=> 50])
+                ]
+            ])
+            ->add('Surname', TextType::class,[
+                'attr'=>[
+                    'class'=>'form-control',
+                    'minLength'=> 2,
+                    'maxLength'=> 50
+                ],
+                'label'=>'Prenom',
+                'label_attr'=>[
+                    'class'=>'form-label'
+                ],
+                'constraints'=>[
+                    new Assert\Length(['min'=>2,'max'=> 50])
+                ] 
+            ])
             ->add('email', EmailType::class,[
                 'attr'=>[
                     'class'=>'form-control',
@@ -50,21 +79,53 @@ class RegistrationFormType extends AbstractType
                 'type'=> PasswordType::class,
                     'first_options'=>[
                         'attr'=>[
-                            'class'=>'form-control'
+                            'class'=>'form-control',
+                            'placeholder'=>'Mot de passe',
                         ],
                         'label'=>'Mot de passe',
                         'label_attr'=>[
                             'class'=> 'form-label'
                         ],
+                        'constraints'=>[
+                            new Assert\NotBlank([
+                                'message'=> 'Veuillez entrer un mot de passe',
+                            ]),
+                            new Assert\Length([
+                                'min'=>6,
+                                'minMessage'=>'Votre mot de passe doit contenir au moins 6 caractères',
+                                'max'=>4096
+                            ]),
+                            new Assert\Regex([
+                                'pattern'=>'/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{10,}$/',
+                                'message'=>'Votre mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial'
+                            ])
+                        ],
+                        'mapped'=>false,
                     ],
                     'second_options'=>[
                         'attr'=>[
-                            'class'=>'form-control'
+                            'class'=>'form-control bg-white-secondary rouded-button border-none',
+                            'placeholder'=> 'Confirmer votre mot de passe',
                         ],
                         'label'=>"Confirmation de votre mot de passe",
                         'label_attr'=>[
                             'class'=>'form-label'
                         ],
+                        'constraints'=>[
+                            new Assert\NotBlank([
+                                'message'=>'Veuillez confirmer votre mot de passe'
+                            ]),
+                            new Assert\Length([
+                                'min'=>6,
+                                'minMessage'=>'Votre mot de passe doit contenir au moins 6 caractères',
+                                'max'=>4096
+                            ]),
+                            new Assert\Regex([
+                                'pattern'=>'/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{10,}$/',
+                                'message'=>'Votre mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial'
+                            ]),
+                        ],
+                        'mapped'=>false,
                     ],
                     'invalid_message'=>"The passwords do not match"
             ])
