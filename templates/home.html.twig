@@ -9,4 +9,7 @@
             Notre mission est de vous offrir une expérience d'achat exceptionnelle, avec des produits de haute qualité, des descriptions détaillées et un service client attentif. N'hésitez pas à nous contacter pour toute question ou besoin d'assistance.<br>
             Merci de nous rejoindre dans cette aventure musicale. Bon shopping et bonne écoute sur Vinyl Paradis !</p>
         <h2 class="text-center">Notre Top 5 du mois de Juin :</h2>
+        {% for topSong in topSongs %}
+            <iframe {{ topSong.file }}></iframe>
+        {% endfor %}
 {% endblock %}
