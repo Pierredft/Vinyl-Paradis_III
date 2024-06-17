@@ -3,30 +3,32 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h2 class="mt-4">Se Connecter</h2>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% if error %}
-            <div class="alert alert-dismissible alert-danger">
-                champ invalide
-            </div>
-        {% endif %}
+    <div class="posCard">
+        <div class="cards">
+            <div class="card-body">
+                <h2 class="card-title text-center">Se Connecter</h2>
+                {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-4">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% if error %}
+                    <div class="alert alert-dismissible alert-danger">
+                        champ invalide
+                    </div>
+                {% endif %}
 
-        <form action="{{ path('app_login')}}" method="post">
-            <label for="username" class="form-label">Email:</label>
-            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username}}">
-
-            <label for="password" class="form-label">Mot de passe:</label>
-            <input class="form-control" type="password" id="password" name="_password">
-
-            <div class="posBtn">
-                <button type="submit" class="btn btn btn-success">S'inscrire</button>
+                <form action="{{ path('app_login')}}" method="post">
+                    <label for="username" class="form-label">Email:</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username}}">
+                    <label for="password" class="form-label">Mot de passe:</label>
+                    <input class="form-control" type="password" id="password" name="_password">
+                    <p class="text-center">Vous n'avez pas encore de compte ? <br><a href="{{path('app_register')}}" class="card-link">inscrivez-vous !</a></p>
+                    <div class="posBtn">
+                        <button type="submit" class="btn btn btn-success mt-3">Se connecter</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-    
 {% endblock %}

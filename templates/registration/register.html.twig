@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {# <div class="posCard">
+    <div class="posCard">
         <div class="cards">
             <div class="card-body">
                 <h1 class="card-title text-center">Inscription</h1>
@@ -12,53 +12,18 @@
                 <p class="card-text">{{ form_row(registrationForm.name) }}</p>
                 <p class="card-text">{{ form_row(registrationForm.Surname) }}</p>
                 <p class="card-text">{{ form_row(registrationForm.email) }}</p>
-                <p class="card-text">{{ form_row(registrationForm.plainPassword, {
-                    label: 'Password'
-                }) }}</p>
+                <p class="card-text">{{ form_row(registrationForm.plainPassword.first) }}</p>
+                <p class="card-text">{{ form_row(registrationForm.plainPassword.second) }}</p>
                 <div class="text-center">
-                    {{ form_row(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms) }}
+                    {{ form_widget(registrationForm.agreeTerms) }}
                 </div>
-                <p class="text-center">Vous avez deja un compte ? <a href="#" class="card-link">connecter vous !</a></p>
+                <p class="text-center">Vous avez deja un compte ? <a href="{{path('app_login')}}" class="card-link">connecter vous !</a></p>
             </div>
             <div class="posBtn">
                 <button type="submit" class="btn btn btn-success">S'inscrire</button>
             </div>
             {{ form_end(registrationForm) }}
         </div>
-    </div> #}
-        <div class="container text-center py-5">
-        <h1>Formulaire d'inscription</h1>
-    </div>
-    <div class="container border p-5" id="registerForm">
-        {{ form_errors(registrationForm) }}
-        {{ form_start(registrationForm) }}
-        <div class="d-flex">
-            <div class="flex-fill p-2">
-
-                {{ form_row(registrationForm.name) }}
-            </div>
-            <div class="flex-fill p-2">
-                {{ form_row(registrationForm.Surname) }}
-            </div>
-        </div>
-        <div class="p-2">
-            {{ form_row(registrationForm.email) }}
-        </div>
-        <div class="d-flex">
-            <div class="flex-fill p-2">
-                {{ form_row(registrationForm.plainPassword.first) }}
-            </div>
-            <div class="flex-fill p-2">
-                {{ form_row(registrationForm.plainPassword.second) }}
-            </div>
-        </div>
-        <div class="p-2">
-            {{ form_label(registrationForm.agreeTerms) }}
-            {{ form_widget(registrationForm.agreeTerms) }}
-        </div>
-        <div class="d-flex justify-content-center mt-3">
-            <button type="submit" class="btn btn-success">S'inscrire</button>
-        </div>
-        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}

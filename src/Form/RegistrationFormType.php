@@ -25,6 +25,7 @@ class RegistrationFormType extends AbstractType
             ->add('name', TextType::class,[
                 'attr'=>[
                     'class'=>'form-control',
+                    'placeholder'=>'DUPONT',
                     'minLength'=>2,
                     'maxLength'=>50
                 ],
@@ -39,6 +40,7 @@ class RegistrationFormType extends AbstractType
             ->add('Surname', TextType::class,[
                 'attr'=>[
                     'class'=>'form-control',
+                    'placeholder'=> 'Jean',
                     'minLength'=> 2,
                     'maxLength'=> 50
                 ],
@@ -53,6 +55,7 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class,[
                 'attr'=>[
                     'class'=>'form-control',
+                    'placeholder'=> 'jean.dupont@google.com',
                     'minLength'=>2,
                     'maxLength'=>50,
                 ],
