@@ -1,0 +1,40 @@
+.jacket{
+    width: 20%;
+    height: auto;
+}
+
+.vinyl{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.prixPanier{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.shopBtn{
+    background-color: white;
+    border: none;
+}
+
+.posCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.filter{
+    filter: drop-shadow(0 0 0.25rem #F4F4AF);
+}

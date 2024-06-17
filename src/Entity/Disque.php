@@ -25,14 +25,15 @@ class Disque
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'disques')]
     private ?Artiste $artiste = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 5)]
+    private ?string $price = null;
 
 
     public function __toString(): string
@@ -81,18 +82,6 @@ class Disque
         return $this;
     }
 
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): static
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
     public function getArtiste(): ?Artiste
     {
         return $this->artiste;
@@ -113,6 +102,18 @@ class Disque
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }
