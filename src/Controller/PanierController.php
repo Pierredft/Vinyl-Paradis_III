@@ -12,11 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 
 class PanierController extends AbstractController
 {
     #[Route('/panier', name: 'app_panier')]
-    public function index(SessionInterface $session, DisqueRepository $disqueRepository, ArtisteRepository $artisteRepository, GenreRepository $genreRepository): Response
+    public function index(SessionInterface $session, DisqueRepository $disqueRepository): Response
     {
         $panier = $session->get('panier', []);
         $data = [];
@@ -25,12 +26,12 @@ class PanierController extends AbstractController
 
         foreach ($panier as $id => $quantite) {
             $disque = $disqueRepository->find($id);
-            $artiste = $artisteRepository->find($id);
-            $genre = $genreRepository->find($id);
+            // $artiste = $artisteRepository->find($id);
+            // $genre = $genreRepository->find($id);
             $data[] = [
                 'disque' => $disque,
-                'artiste' => $artiste,
-                'genre' => $genre,
+                // 'artiste' => $artiste,
+                // 'genre' => $genre,
                 'quantite' => $quantite
             ];
             $total += $disque->getPrice() * $quantite;
@@ -42,12 +43,12 @@ class PanierController extends AbstractController
 }
 
 #[Route('/add/{id}', name: 'add')]
-        public function add(Disque $disque,Artiste $artiste, Genre $genre, SessionInterface $session)
+        public function add(Disque $disque, SessionInterface $session)
         {
             //on récupere l'id du produit
             $id = $disque->getId();
-            $id = $artiste->getId();
-            $id = $genre->getId();
+            // $id = $artiste->getId();
+            // $id = $genre->getId();
             //on récupere le panier existant
             $panier = $session->get('panier', []);
             
@@ -58,7 +59,6 @@ class PanierController extends AbstractController
             }else{
                 $panier[$id]++;
             }
-
             $session->set('panier', $panier);
             //on redirige vers la page panier
             return $this->redirectToRoute('app_panier');
