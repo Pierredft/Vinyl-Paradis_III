@@ -20,6 +20,9 @@ class TopSong
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mois = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,5 +55,17 @@ class TopSong
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function getMois(): ?string
+    {
+        return $this->mois;
+    }
+
+    public function setMois(?string $mois): static
+    {
+        $this->mois = $mois;
+
+        return $this;
     }
 }
