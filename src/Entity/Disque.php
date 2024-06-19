@@ -54,7 +54,7 @@ class Disque
     {
         $this->genres = new ArrayCollection();
         $this->genre = new ArrayCollection();
-    }
+        }
 
 
     public function __toString(): string

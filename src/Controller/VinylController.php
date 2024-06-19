@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ArtisteRepository;
 use App\Repository\DisqueRepository;
 use App\Repository\GenreRepository;
+use App\Repository\OrdersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

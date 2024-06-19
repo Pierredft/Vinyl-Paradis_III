@@ -34,8 +34,18 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 }
 
 .filter{
     filter: drop-shadow(0 0 0.5rem #D02A2A);
+}
+
+.soldOut{
+    position: absolute;
+    object-fit: fill;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
 }
