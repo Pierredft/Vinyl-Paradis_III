@@ -7,6 +7,7 @@ use App\Entity\Produit;
 use Doctrine\ORM\Mapping\Entity;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -14,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use phpDocumentor\Reflection\Types\Integer;
 
 class DisqueCrudController extends AbstractCrudController
 {
@@ -35,6 +37,7 @@ class DisqueCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/imgDisc')
                 ->setRequired($pageName !== Crud::PAGE_EDIT)
                 ->setFormTypeOptions($pageName !== Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
+            IntegerField::new('quantity'),
 
     
     

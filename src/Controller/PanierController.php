@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 class PanierController extends AbstractController
 {
@@ -40,80 +40,96 @@ class PanierController extends AbstractController
     {
         return $this->render('panier/index.html.twig',compact('data', 'total','totalQuantity'));
     }
-}
+    }
 
 #[Route('/add/{id}', name: 'add')]
-        public function add(Disque $disque, SessionInterface $session)
+        public function add(Disque $disque, SessionInterface $session, Request $request)
         {
             //on récupere l'id du produit
             $id = $disque->getId();
-            // $id = $artiste->getId();
-            // $id = $genre->getId();
             //on récupere le panier existant
             $panier = $session->get('panier', []);
             
             //on ajoute le produit dans la session panier si il n'y est pas encore
             //sinon on augmente la quantité
-            if(empty($panier[$id])){
-                $panier[$id] =1;
-            }else{
-                $panier[$id]++;
-            }
-            $session->set('panier', $panier);
+            if (empty($panier[$id])) {
+                // Vérifiez si la quantité demandée est disponible
+                if ($disque->getQuantity() > 0) {
+                    $quantity = $request->request->getInt('quantity', 1);
+                    $panier[$id] = $quantity;
+                    
+                } else {
+                    // Retournez un message d'erreur si la quantité demandée n'est pas disponible
+                    $this->addFlash('error', 'La quantité demandée n\'est pas disponible');
+                    return $this->redirectToRoute('app_vinyl');
+                }
+            } else {
+                // Si l'article est déjà dans le panier, incrémentez la quantité
+                if ($disque->getQuantity() > $panier[$id]) {
+                    $panier[$id]++;
+                } else {
+                    // Retournez un message d'erreur si la quantité demandée n'est pas disponible
+                    $this->addFlash('error', 'La quantité demandée n\'est pas disponible');
             //on redirige vers la page panier
             return $this->redirectToRoute('app_panier');
         }
+    }
+        $session->set('panier', $panier);
+        // on redirige vers le panier
+        return $this->redirectToRoute('app_panier');
+    }
 
-        #[Route('/remove/{id}', name: 'remove')]
-        public function remove(Disque $disque, SessionInterface $session)
-        {
-            //on récupere l'id du produit
-            $id = $disque->getId();
 
-            //on récupere le panier existant
-            $panier = $session->get('panier', []);
-            
-            //on retire le produit dans la session panier si il n'y qu'un seul produit
-            //sinon on decremente la quantité
-            if(!empty($panier[$id])){
-                if($panier[$id] > 1){
-                    $panier[$id]--;
+    #[Route('/remove/{id}', name: 'remove')]
+    public function remove(Disque $disque, SessionInterface $session)
+    {
+        //on récupere l'id du produit
+        $id = $disque->getId();
+
+        //on récupere le panier existant
+        $panier = $session->get('panier', []);
+        
+        //on retire le produit dans la session panier si il n'y qu'un seul produit
+        //sinon on decremente la quantité
+        if(!empty($panier[$id])){
+            if($panier[$id] > 1){
+                $panier[$id]--;
             }else{
                 unset($panier[$id]);
             }
         }
 
-            $session->set('panier', $panier);
-            
-            //on redirige vers la page panier
-            return $this->redirectToRoute('app_panier');
+        $session->set('panier', $panier);
+        
+        //on redirige vers la page panier
+        return $this->redirectToRoute('app_panier');
+    }
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(Disque $disque, SessionInterface $session)
+    {
+        //on récupere l'id du produit
+        $id = $disque->getId();
+
+        //on récupere le panier existant
+        $panier = $session->get('panier', []);
+        
+        if(!empty($panier[$id])){
+            unset($panier[$id]);
         }
 
-        #[Route('/delete/{id}', name: 'delete')]
-        public function delete(Disque $disque, SessionInterface $session)
-        {
-            //on récupere l'id du produit
-            $id = $disque->getId();
+        $session->set('panier', $panier);
+        
+        //on redirige vers la page panier
+        return $this->redirectToRoute('app_panier');
+    }
 
-            //on récupere le panier existant
-            $panier = $session->get('panier', []);
-            
-            if(!empty($panier[$id])){
-                unset($panier[$id]);
-            }
-
-            $session->set('panier', $panier);
-            
-            //on redirige vers la page panier
-            return $this->redirectToRoute('app_panier');
-        }
-
-        #[Route('/empty', name: 'empty')]
-        public function empty(SessionInterface $session)
-        {
-            $session->remove('panier');
-            
-            //on redirige vers la page panier
-            return $this->redirectToRoute('app_panier');
-        }
+    #[Route('/empty', name: 'empty')]
+    public function empty(SessionInterface $session)
+    {
+        $session->remove('panier');
+        
+        //on redirige vers la page panier
+        return $this->redirectToRoute('app_panier');
+    }
 }

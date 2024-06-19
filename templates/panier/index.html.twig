@@ -3,8 +3,14 @@
 {% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
-    <main class="container ">
-        <section class="row">
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+<main class="container ">
+    <section class="row">
         <div class="col-12 ">
             <h1 class="text-center text-white">Panier</h1>
             <table class="table test">
@@ -19,40 +25,47 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-            <tbody>
-                {% for element in data %}
-                    <tr>
-                        <td><img src="/images/imgDisc/{{element.disque.image}}" alt="" class="img-fluid rounded-start" style="max-width:100px"></td>
-                        <td class="pt-5">{{element.disque.artiste.nom}}</td>
-                        <td class="pt-5">{{element.disque.title}}<br>{{element.disque.subtitle}}</td>
-                        <td class="pt-5">{{element.disque.price|number_format(2, '.', '')}}</td>
-                        <td class="pt-5">{{element.quantite}}</td>
-                        <td class="pt-5">{{element.quantite * element.disque.price}}€</td>
-                        <td class="pt-5">
-                        <a href="{{path('add', {'id':element.disque.id})}}" class="btn btn-success">+</a>
-                        <a href="{{path('remove', {'id':element.disque.id})}}" class="btn btn-warning">-</a>
-                        <a href="{{path('delete', {'id':element.disque.id})}}" class="btn btn-danger">Delete</a>
-                        </td> 
-                    </tr>
+                <tbody>
+                    {% for element in data %}
+                        <tr>
+                            <td><img src="/images/imgDisc/{{element.disque.image}}" alt="" class="img-fluid rounded-start" style="max-width:100px"></td>
+                            <td class="pt-5">{{element.disque.artiste.nom}}</td>
+                            <td class="pt-5">{{element.disque.title}}<br>{{element.disque.subtitle}}</td>
+                            <td class="pt-5">{{element.disque.price|number_format(2, '.', '')}}</td>
+                            <td class="pt-5">{{element.quantite}}</td>
+                            <td class="pt-5">{{element.quantite * element.disque.price}}€</td>
+                            <td class="pt-5">
+                                <a href="{{path('remove', {'id':element.disque.id})}}" class="btn btn-warning">-</a>
+                                <a href="{{path('add', {'id':element.disque.id})}}" class="btn btn-success">+</a>
+                                <a href="{{path('delete', {'id':element.disque.id})}}" class="btn btn-danger">Delete</a>
+                            </td> 
+                        </tr>
                     {% else %}
                         <tr>
                             <td colspan="8">Votre panier est vide</td>
                         </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5">Total {{total}}€</td>
-                    <td>Quantité total {{ totalQuantity }}</td>
-                    <td>
-                        <a href="{{path('empty')}}" class="btn btn-danger">Vider le panier</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        <a href="#" class="btn btn-primary">Valider le panier</a>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Total {{total}}€</td>
+                        <td>Quantité total {{ totalQuantity }}</td>
+                        <td>
+                            <a href="{{path('empty')}}" class="btn btn-danger">Vider le panier</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <a href="#" class="btn btn-primary">Valider le panier</a>
         </div>
-        </section>
-    
-    </main>
+    </section>
+</main>
+
+<script>
+    setTimeout(function() {
+        document.querySelectorAll('.alert').forEach(function(alert) {
+            alert.remove();
+        });
+    }, 10000);
+</script>
 {% endblock %}
