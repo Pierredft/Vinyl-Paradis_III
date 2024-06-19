@@ -21,6 +21,7 @@ class TopSongCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
+            TextField::new('mois'),
             UrlField::new('file')->setLabel('Song File'),
 
         ];
