@@ -17,24 +17,24 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Groupe / Chanteur</th>
-                        <th>Titre</th>
-                        <th>Prix</th>
-                        <th>Quantité</th>
-                        <th>Total</th>
-                        <th>Action</th>
+                        <th class="text-center">Groupe / Chanteur</th>
+                        <th class="text-center">Titre</th>
+                        <th class="text-center">Prix</th>
+                        <th class="text-center">Quantité</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for element in data %}
                         <tr>
                             <td><img src="/images/imgDisc/{{element.disque.image}}" alt="" class="img-fluid rounded-start" style="max-width:100px"></td>
-                            <td class="pt-5">{{element.disque.artiste.nom}}</td>
-                            <td class="pt-5">{{element.disque.title}}<br>{{element.disque.subtitle}}</td>
-                            <td class="pt-5">{{element.disque.price|number_format(2, '.', '')}}</td>
-                            <td class="pt-5">{{element.quantite}}</td>
-                            <td class="pt-5">{{element.quantite * element.disque.price}}€</td>
-                            <td class="pt-5">
+                            <td class="pt-5 text-center">{{element.disque.artiste.nom}}</td>
+                            <td class="pt-5 text-center">{{element.disque.title}}<br>{{element.disque.subtitle}}</td>
+                            <td class="pt-5 text-center">{{element.disque.price|number_format(2, '.', '')}}</td>
+                            <td class="pt-5 text-center">{{element.quantite}}</td>
+                            <td class="pt-5 text-center">{{element.quantite * element.disque.price}}€</td>
+                            <td class="pt-5 text-center">
                                 <a href="{{path('remove', {'id':element.disque.id})}}" class="btn btn-warning">-</a>
                                 <a href="{{path('add', {'id':element.disque.id})}}" class="btn btn-success">+</a>
                                 <a href="{{path('delete', {'id':element.disque.id})}}" class="btn btn-danger">Delete</a>

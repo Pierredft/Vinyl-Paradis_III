@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authentication\RememberMe\PersistentToken;
 
 class PanierController extends AbstractController
 {
@@ -37,6 +38,7 @@ class PanierController extends AbstractController
             ];
             $total += $disque->getPrice() * $quantite;
             $totalQuantity += $quantite;
+
         }
     {
         return $this->render('panier/index.html.twig',compact('data', 'total','totalQuantity'));
@@ -75,7 +77,8 @@ class PanierController extends AbstractController
             return $this->redirectToRoute('app_panier');
         }
     }
-        $session->set('panier', $panier);
+    $session->set('panier', $panier);
+
         // on redirige vers le panier
         return $this->redirectToRoute('app_panier');
     }
