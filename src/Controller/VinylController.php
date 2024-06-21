@@ -18,7 +18,7 @@ class VinylController extends AbstractController
         $disque = $disqueRepository->findAll();
         $artiste = $artisteRepository->findAll();
         $genre = $genreRepository->findAll();
-        return $this->render('vinyl/index.html.twig', [
+        return $this->render('pages/vinyl/vinyl.html.twig', [
             'disques'=> $disque,
             'artistes'=> $artiste,
             'genres'=> $genre

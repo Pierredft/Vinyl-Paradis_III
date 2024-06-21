@@ -41,7 +41,7 @@ class PanierController extends AbstractController
 
         }
     {
-        return $this->render('panier/index.html.twig',compact('data', 'total','totalQuantity'));
+        return $this->render('pages/panier/panier.html.twig',compact('data', 'total','totalQuantity'));
     }
     }
 
