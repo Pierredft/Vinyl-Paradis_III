@@ -44,17 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $surname = null;
 
-    /**
-     * @var Collection<int, SavePanier>
-     */
-    #[ORM\OneToMany(targetEntity: SavePanier::class, mappedBy: 'user')]
-    private Collection $panier;
-
-    public function __construct()
-    {
-        $this->panier = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -181,33 +170,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->name . ' ' . $this->surname;
     }
 
-    /**
-     * @return Collection<int, SavePanier>
-     */
-    public function getPanier(): Collection
-    {
-        return $this->panier;
-    }
-
-    public function addPanier(SavePanier $panier): static
-    {
-        if (!$this->panier->contains($panier)) {
-            $this->panier->add($panier);
-            $panier->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removePanier(SavePanier $panier): static
-    {
-        if ($this->panier->removeElement($panier)) {
-            // set the owning side to null (unless already changed)
-            if ($panier->getUser() === $this) {
-                $panier->setUser(null);
-            }
-        }
-
-        return $this;
-    }    
 }

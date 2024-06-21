@@ -27,3 +27,10 @@
     color: #D02A2A;
     font-size: 1.5em;
 }
+
+.items{
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: right;
+}

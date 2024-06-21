@@ -12,13 +12,7 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white fs-1" href="{{path('app_vinyl')}}">Nos Vinyles</a>
                 </li>
-                {# <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li> #}
-                {# <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li> #}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown ms-5">
                     <a class="nav-link active dropdown-toggle text-white fs-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-regular fa-user"></i>
                     </a>
@@ -36,7 +30,7 @@
                     </ul>
                 </li>
                 {% if app.user %}
-                    <li class="nav-item">
+                    <li class="nav-item ms-5">
                     <a href="{{path('app_panier')}}" class="nav-link active text-white fs-1"><i class="fa-solid fa-cart-shopping"></i></a>
                 </li>
                 {% endif %}
