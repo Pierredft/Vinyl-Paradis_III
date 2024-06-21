@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Repository\ArtisteRepository;
-use App\Repository\DisqueRepository;
+use App\Entity\Disque;
 use App\Repository\GenreRepository;
+use App\Repository\DisqueRepository;
 use App\Repository\OrdersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ArtisteRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VinylController extends AbstractController
 {
@@ -22,6 +23,14 @@ class VinylController extends AbstractController
             'disques'=> $disque,
             'artistes'=> $artiste,
             'genres'=> $genre
+        ]);
+    }
+
+    #[Route('/vinyl/{id}', name:'app_vinyl_show', methods: ['GET'])]
+    public function show(Disque $disque): Response
+    {
+        return $this->render('pages/vinyl/show.html.twig', [
+            'disque' => $disque
         ]);
     }
 }

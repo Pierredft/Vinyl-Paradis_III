@@ -4,58 +4,23 @@
 
 {% block body %}
     {% for disque in disques %}
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
-    <div class="posCard">
-        <div class="blackScnd mb-3 filter" style="max-width: 80%;">
-    {% if disque.quantity == 0 %}
-        <img class="soldOut" src="{{ asset('/images/soldOut.png') }}" alt="Sold Out">
-    {% endif %}
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img class="img-fluid p10" src="{{ asset('/images/imgDisc/' ~ disque.image) }}" alt="#">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h2 class="card-title text-center text-danger">{{ disque.artiste.nom }}</h2>
-                        <h3 class="text-center text-success">{{ disque.title }}</h3>
-                        <h4 class="card-title text-center text-warning">{{ disque.subtitle }}</h4>
-                        {% for genre in disque.genre %}
-                            <h5 class="card-title text-center text-info">{{ genre.nom }}</h5> 
-                        {% endfor %}
-                        <p class="card-text text-center text-white">{{ disque.description }}</p>
-                        <div class="prixPanier">
-                            <p class="mr5 text-white mt-3">Prix :</p>
-                            <p class="text-white mt-3">{{ disque.price|number_format(2, '.', '') }}</p>
-                            <p class="mr20 text-white mt-3">€</p>
-                            {% if app.user %}
-                                {% if disque.quantity > 0 %}
-                                    <form action="{{ path('add', {'id': disque.id}) }}" method="post">
-                                        <input class="" type="number" name="quantity" min="1" max="{{ disque.quantity }}" value="1">
-                                        <button type="submit" class="shopBtn hidden text-white"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #D02A2A;"></i></button>
-                                    </form>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                        {% if disque.quantity <= 3 %}
-                            <p class="card-text text-center text-danger">Quantité restante : {{ disque.quantity }}</p>
-                        {% endif %}
+        <div style="display: inline-block;">
+            <div class="card cardBorder cardSize">
+                {% if disque.quantity == 0 %}
+                    <img class="soldOut" src="{{ asset('/images/soldOut.png') }}" alt="Sold Out">
+                {% endif %}
+                <img class="img-fluid p10" src="{{ asset('/images/imgDisc/' ~ disque.image) }}" alt="#">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-danger">{{ disque.artiste.nom }}</h5>
+                    <h5 class="card-title text-center text-success">{{ disque.title }}</h5>
+                    <div class="posBtn mt-3 mb-3">
+                        <a href="{{path('app_vinyl_show', {'id' : disque.id})}}"{% if disque.quantity == 0 %} style="display: none;"{% endif %}><button class="btn btn-success">Voir le disque</button></a>
                     </div>
+                    {% if disque.quantity <= 3 %}
+                        <p class="card-text text-center text-danger">Quantité restante : {{ disque.quantity }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <script>
-        setTimeout(function() {
-            document.querySelectorAll('.alert').forEach(function(alert) {
-                alert.remove();
-            });
-        }, 10000);
-    </script>
     {% endfor %}
 {% endblock %}

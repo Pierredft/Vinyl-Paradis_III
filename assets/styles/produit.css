@@ -24,19 +24,6 @@
     justify-content: center;
 }
 
-.shopBtn{
-    background-color: #403c3c;
-    border: none;
-}
-
-.posCard{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-}
-
 .filter{
     filter: drop-shadow(0 0 0.5rem #D02A2A);
 }
@@ -47,5 +34,31 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30%;
+    width: 100%;
+}
+
+.posBtn{
+    display: flex;
+    justify-content: center;
+}
+
+.cardBorder{
+    border: 3px solid #D02A2A;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.cardSize{
+    width: 18rem;
+    height: 30rem;
+}
+
+.igmPos{
+    display: flex;
+    justify-content: center;
+}
+
+.btnStyle{
+    background-color: black;
+    border: none;
 }
