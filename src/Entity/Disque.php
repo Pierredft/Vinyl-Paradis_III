@@ -50,6 +50,9 @@ class Disque
     #[ORM\Column]
     private ?int $quantity = null;
 
+    #[ORM\Column]
+    private ?bool $topVente = null;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
@@ -171,6 +174,18 @@ class Disque
     public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function isTopVente(): ?bool
+    {
+        return $this->topVente;
+    }
+
+    public function setTopVente(bool $topVente): static
+    {
+        $this->topVente = $topVente;
 
         return $this;
     }
