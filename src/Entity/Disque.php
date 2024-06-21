@@ -29,9 +29,6 @@ class Disque
     #[ORM\ManyToOne(inversedBy: 'disques')]
     private ?Artiste $artiste = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
-
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 5)]
     private ?string $price = null;
 
@@ -52,6 +49,9 @@ class Disque
 
     #[ORM\Column]
     private ?bool $topVente = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -118,18 +118,6 @@ class Disque
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getPrice(): ?string
     {
         return $this->price;
@@ -189,4 +177,17 @@ class Disque
 
         return $this;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
 }

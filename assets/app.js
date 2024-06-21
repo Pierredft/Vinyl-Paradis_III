@@ -18,5 +18,6 @@ import './styles/produit.css';
 import './styles/panier.css';
 import './styles/swiper-bundle.min.css';
 import './styles/swiper.css';
+import './styles/swipper2.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Disque;
 use App\Entity\Artiste;
 use App\Entity\Genre;
+use App\Entity\Images;
+use App\Entity\NewImg;
 use App\Entity\TopMonth;
 use App\Entity\TopSong;
 use Symfony\Component\HttpFoundation\Response;
