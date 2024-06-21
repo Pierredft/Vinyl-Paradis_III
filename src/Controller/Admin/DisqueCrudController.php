@@ -5,17 +5,19 @@ namespace App\Controller\Admin;
 use App\Entity\Disque;
 use App\Entity\Produit;
 use Doctrine\ORM\Mapping\Entity;
+use phpDocumentor\Reflection\Types\Boolean;
+use phpDocumentor\Reflection\Types\Integer;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use phpDocumentor\Reflection\Types\Integer;
 
 class DisqueCrudController extends AbstractCrudController
 {
@@ -38,6 +40,7 @@ class DisqueCrudController extends AbstractCrudController
                 ->setRequired($pageName !== Crud::PAGE_EDIT)
                 ->setFormTypeOptions($pageName !== Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
             IntegerField::new('quantity'),
+            BooleanField::new('topVente'),
 
     
     
